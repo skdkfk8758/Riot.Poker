@@ -184,7 +184,6 @@ public class EvaluatorTest {
 
         hand.addCard(new Card(7,Suit.SPADE));
         hand.addCard(new Card(7,Suit.CLUB));
-        hand.addCard(new Card(7,Suit.DIAMOND));
         hand.addCard(new Card(5,Suit.HEART));
         hand.addCard(new Card(9,Suit.HEART));
         hand.addCard(new Card(4,Suit.HEART));
@@ -223,7 +222,6 @@ public class EvaluatorTest {
         EvaluatorEnum result = evaluator.evaluateFlush(hand);
         assertTrue(result != EvaluatorEnum.FLUSH);
     }
-}
 
     @Test
     public void 원페어검증성공() throws NoFullHandException {

@@ -106,7 +106,6 @@ public class Evaluator {
             return EvaluatorEnum.NONE;
     }
 
-
     public EvaluatorEnum evaluateStragight(Hand hand) {
         boolean isEvaluator = false;
         List<Card> handList = hand.getCardList();
@@ -143,9 +142,8 @@ public class Evaluator {
         List<Card> handList = hand.getCardList();
         int check = 0;
         Card tmpCard = handList.get(0);
-        handList.remove(0);
 
-        if (hand.getCardCount() != 4) {
+        if (hand.getCardCount() != 5) {
             throw new NoFullHandException();
         } else {
             for (Card card : handList) {
@@ -188,7 +186,6 @@ public class Evaluator {
         else
             return EvaluatorEnum.NONE;
     }
-}
 
     public EvaluatorEnum evaluateOnePair(Hand hand) {
         boolean isEvaluator = false;

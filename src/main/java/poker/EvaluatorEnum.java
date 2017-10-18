@@ -9,6 +9,6 @@ public enum EvaluatorEnum {
     FLUSH,
     ONE_PAIR,
     TWO_PAIR,
-    TRIPLE,
+    TRIPLE, STRAIGHT,
 
 }
