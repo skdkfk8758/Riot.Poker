@@ -57,9 +57,7 @@ public class Evaluator {
                 } else {
                     for (int royal : backStraightFlushArray) {
                         if (royal == card.getRank()) {
-                            if (royal == card.getRank()) {
                                 check++;
-                            }
                             if (check == handList.size()) {
                                 isEvaluator = true;
                             }
@@ -113,16 +111,17 @@ public class Evaluator {
         List<Card> handList = hand.getCardList();
         int check = 0;
         Card tmpCard = handList.get(0);
+        handList.remove(0);
 
-        if (hand.getCardCount() != 5) {
+        if (hand.getCardCount() != 4) {
             throw new NoFullHandException();
         } else {
             for (Card card : handList) {
-                if (tmpCard.getRank() == card.getRank()){
-                    check ++;
+                if (tmpCard.getRank() == card.getRank()) {
+                    check++;
                     tmpCard = card;
                 }
-                if (check == 4){
+                if (check == 4) {
                     isEvaluator = true;
                 }
             }
@@ -157,4 +156,61 @@ public class Evaluator {
         else
             return EvaluatorEnum.NONE;
     }
+
+    public EvaluatorEnum evaluateOnePair(Hand hand) {
+        boolean isEvaluator = false;
+        List<Card> handList = hand.getCardList();
+        int check = 0;
+        Card tmpCard = handList.get(0);
+
+        if (hand.getCardCount() != 5) {
+            throw new NoFullHandException();
+        } else {
+            for (Card card : handList) {
+                if (tmpCard.getRank() == card.getRank()) {
+                    check++;
+                    tmpCard = card;
+                } else{
+                    tmpCard = card;
+                }
+                if (check == 2) {
+                    isEvaluator = true;
+                }
+            }
+        }
+        if (isEvaluator == true)
+            return EvaluatorEnum.ONE_PAIR;
+        else
+            return EvaluatorEnum.NONE;
+    }
+
+    public EvaluatorEnum evaluateTriple(Hand hand) {
+        boolean isEvaluator = false;
+        List<Card> handList = hand.getCardList();
+        int check = 0;
+        Card tmpCard = handList.get(0);
+
+        if (hand.getCardCount() != 5) {
+            throw new NoFullHandException();
+        } else {
+            for (Card card : handList) {
+                if (tmpCard.getRank() == card.getRank()) {
+                    check++;
+                    tmpCard = card;
+                } else{
+                    tmpCard = card;
+                }
+                if (check == 3) {
+                    isEvaluator = true;
+                }
+            }
+        }
+        if (isEvaluator == true)
+            return EvaluatorEnum.TRIPLE;
+        else
+            return EvaluatorEnum.NONE;
+    }
+
+
+
 }
