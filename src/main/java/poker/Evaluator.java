@@ -106,6 +106,38 @@ public class Evaluator {
             return EvaluatorEnum.NONE;
     }
 
+
+    public EvaluatorEnum evaluateStragight(Hand hand) {
+        boolean isEvaluator = false;
+        List<Card> handList = hand.getCardList();
+        int check = 0;
+        Collections.sort(handList);
+        Card tmpCard = handList.get(0);
+        handList.remove(tmpCard);
+
+        if (hand.getCardCount() != 4) {
+            throw new NoFullHandException();
+        } else {
+            for (Card card : handList) {
+                {
+                    for (Card card2 : handList) {
+                        if ((tmpCard.getRank() + 1) == card2.getRank()) {
+                            check++;
+                            tmpCard = card2;
+                            if (check == handList.size()) {
+                                isEvaluator = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (isEvaluator == true)
+            return EvaluatorEnum.STRAIGHT;
+        else
+            return EvaluatorEnum.NONE;
+    }
+
     public EvaluatorEnum evaluateFourCard(Hand hand) {
         boolean isEvaluator = false;
         List<Card> handList = hand.getCardList();
@@ -156,6 +188,7 @@ public class Evaluator {
         else
             return EvaluatorEnum.NONE;
     }
+}
 
     public EvaluatorEnum evaluateOnePair(Hand hand) {
         boolean isEvaluator = false;
