@@ -186,6 +186,7 @@ public class EvaluatorTest {
         hand.addCard(new Card(7,Suit.CLUB));
         hand.addCard(new Card(7,Suit.DIAMOND));
         hand.addCard(new Card(5,Suit.HEART));
+        hand.addCard(new Card(9,Suit.HEART));
         hand.addCard(new Card(4,Suit.HEART));
 
         Evaluator evaluator = new Evaluator();
@@ -222,4 +223,37 @@ public class EvaluatorTest {
         EvaluatorEnum result = evaluator.evaluateFlush(hand);
         assertTrue(result != EvaluatorEnum.FLUSH);
     }
+}
+
+    @Test
+    public void 원페어검증성공() throws NoFullHandException {
+        Hand hand = new Hand();
+
+        hand.addCard(new Card(1,Suit.DIAMOND));
+        hand.addCard(new Card(2,Suit.HEART));
+        hand.addCard(new Card(4,Suit.HEART));
+        hand.addCard(new Card(4,Suit.HEART));
+        hand.addCard(new Card(9,Suit.HEART));
+
+        Evaluator evaluator = new Evaluator();
+        EvaluatorEnum result = evaluator.evaluateOnePair(hand);
+        assertTrue(result == EvaluatorEnum.ONE_PAIR);
+    }
+
+    @Test
+    public void 트리플검증성공() throws NoFullHandException {
+        Hand hand = new Hand();
+
+        hand.addCard(new Card(1,Suit.DIAMOND));
+        hand.addCard(new Card(4,Suit.HEART));
+        hand.addCard(new Card(4,Suit.HEART));
+        hand.addCard(new Card(4,Suit.HEART));
+        hand.addCard(new Card(9,Suit.HEART));
+
+        Evaluator evaluator = new Evaluator();
+        EvaluatorEnum result = evaluator.evaluateTriple(hand);
+        assertTrue(result == EvaluatorEnum.TRIPLE);
+    }
+
+
 }
